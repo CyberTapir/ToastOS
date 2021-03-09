@@ -13,16 +13,21 @@ using Sys = Cosmos.System;
 
 namespace ToastOS
 {
+    class Global
+    {
+        public static int adminState = 0;
+    }
     public class Kernel : Sys.Kernel
     {
 
         //Variables
-        //public int adminState = 0;
+        public int adminState = 0;
 
         protected override void BeforeRun()
         {
             Console.Clear();
             Console.WriteLine("ToastOS User Console");
+            Global.adminState = 0;
         }
 
         protected override void Run()
@@ -41,9 +46,7 @@ namespace ToastOS
                 case "clear":
                     clear();
                     break;
-                //case "caesar encrypt":
-                    //caesarEncrypt();
-                    //break;
+                    break;
                 case "calculator":
                     calculator(0);
                     break;
@@ -59,6 +62,9 @@ namespace ToastOS
                 case "triangle area":
                     area(2);
                     break;
+                case "logout":
+                    adminLogin(2);
+                    break;
                 default:
                     oops();
                     break;
@@ -72,39 +78,58 @@ namespace ToastOS
 
         private static void about() //Tells the user about the System
         {
-            Console.WriteLine("ToastOS 0.6");
+            Console.WriteLine("ToastOS 0.8");
             Console.WriteLine("Developed by Callum Bennett");
             Console.WriteLine("Software made using COSMOS C# user kit");
         }
 
-        private static void adminLogin(int called) //This will tell if the user is logged in as an admin or not
+        public static void adminLogin(int called) //This will tell if the user is logged in as an admin or not
         {
-            /*bool adminTrue;
+            //Adminstate
+            //0 = not signed in 
+            //1 = Signed in
+
+            //called
+            //0 = start login
+            //1 = check admin state
+            //2 = logout
             if (called == 0)
             {
-                adminTrue = false;
+                //Login
+                Console.WriteLine();
                 Console.WriteLine("username: ");
-                string userName = Console.ReadLine();
+                string user = Console.ReadLine();
                 Console.WriteLine("password: ");
-                string password = Console.ReadLine();
-                if (userName == "administrator" && password == "administrator")
+                string pass = Console.ReadLine();
+                if (user == "administrator")
                 {
-                    adminTrue = 1;
+                    if (pass == "administrator") //Set as another global variable, maybe add method to change this value later
+                    {
+                        Global.adminState = 1;
+                        Console.WriteLine("Logon Successful");
+                    }
                 } else
                 {
-                    Console.WriteLine("logon failed");
-                    clear();
+                    Console.WriteLine("login unsuccessful");
                 }
-            } else if (called == 1) //for the Clear command, this will write if the user is an admin or not
+
+            } else if (called == 1)
             {
-                if (adminTrue == true)
+                //Check if the user is admin or not for the Clear Command
+                if (Global.adminState == 0)
                 {
-                    Console.WriteLine("ToastOS Admin Console");
-                } else
-                {
+                    //Not signed in 
                     Console.WriteLine("ToastOS User Console");
+                } else if (Global.adminState == 1)
+                {
+                    //Signed in
+                    Console.WriteLine("ToastOS Administrator Console"); 
                 }
-            }*/
+            } else if (called == 2)
+            {
+                Global.adminState = 0;
+                clear();
+            }
         }
 
         private static void clear() //Clears the Console and calls adminLogin with an input value of 1
@@ -112,26 +137,6 @@ namespace ToastOS
             Console.Clear();
             adminLogin(1);
         }
-
-        /*private static void caesarEncrypt() //Encrypts a string using Caesar Cipher shifting 3 places
-        {
-            char[] alphabet = new char[] { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
-            Console.Write("Enter message to Encrypt > ");
-            string secretInput1 = Console.ReadLine();
-            string secretInput = secretInput1.ToLower();
-            char[] secretMessage = secretInput.ToCharArray();
-            char[] encryptedMessage = new char[secretMessage.Length];
-            for (int i = 0; i < secretMessage.Length; i++)
-            {
-                char currentLetter = secretMessage[i];
-                int position = Array.IndexOf(alphabet, currentLetter);
-                int newPosition = (position + 3) % 26;
-                char newLetter = alphabet[newPosition];
-                encryptedMessage[i] = newLetter;
-            }
-            string output = String.Join("", encryptedMessage);
-            Console.WriteLine(output);
-        }*/
 
         private static void calculator(int input)
         {
