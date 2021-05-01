@@ -1,8 +1,8 @@
 ﻿/*
 ToastOS Source Code
 Made by Callum Bennett (callumbennett-dev on GitHub)
-Made using COSMOS C#
-Project from March 2021
+Made using COSMOS user kit C#
+Ongoing Project from March 2021
 */
 
 using System;
@@ -44,8 +44,7 @@ namespace ToastOS
                     adminLogin(0);
                     break;
                 case "clear":
-                    clear();
-                    break;
+                    clear(0);
                     break;
                 case "calculator":
                     calculator(0);
@@ -65,12 +64,17 @@ namespace ToastOS
                 case "logout":
                     adminLogin(2);
                     break;
+                case "hangman":
+                    hangman();
+                    break;
+                case "conversion":
+                    conversion();
+                    break;
                 default:
                     oops();
                     break;
             }
         }
-
         private static void oops() //This will trigger when a command not listed is entered
         {
             Console.WriteLine("Bad command, try again");
@@ -128,14 +132,22 @@ namespace ToastOS
             } else if (called == 2)
             {
                 Global.adminState = 0;
-                clear();
+                clear(0);
             }
         }
 
-        private static void clear() //Clears the Console and calls adminLogin with an input value of 1
+        private static void clear(int value) //Clears the Console and calls adminLogin with an input value of 1
         {
-            Console.Clear();
-            adminLogin(1);
+            if (value == 0)
+            {
+                Console.Clear();
+                adminLogin(1);
+            } else if (value == 1)
+            {
+                Console.Clear();
+                Console.WriteLine("Hangman");
+            }
+
         }
 
         private static void calculator(int input)
@@ -288,6 +300,43 @@ namespace ToastOS
                 double area = width * length;
                 Console.WriteLine(area / 2);
             }
+        }
+
+        private static void hangman()
+        {
+            /*
+            string[] words = {"fdf", "sadf"};
+            int livesLeft = 7;
+            char[] word;
+
+            //Clear console to begin
+            clear(1);
+
+            //Pick word randomly
+
+            //Save the word in a char array
+
+            //Instructions/demo (selector if statement)
+            Console.WriteLine();
+            Console.Write("Play (1), Instructions (2)");
+            string strPlayValue = Console.ReadLine();
+            int playValue = Convert.ToInt32(strPlayValue);
+            if (playValue == 1)
+            {
+
+            }
+
+            //Log _ according to the length of the word picked (For Loop)
+
+            //gameplay
+            //What happens when the word is incorrect
+            //Clearing the console, and replacing any letters that are the same as the player guessed
+            //display lives left
+            */
+        }
+        private void conversion()
+        {
+
         }
     }
 }
