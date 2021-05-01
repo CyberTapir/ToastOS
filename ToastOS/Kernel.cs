@@ -3,6 +3,7 @@ ToastOS Source Code
 Made by Callum Bennett (callumbennett-dev on GitHub)
 Made using COSMOS user kit C#
 Ongoing Project from March 2021
+Will become a release when is finished. (May be a while away)
 */
 
 using System;
@@ -336,7 +337,24 @@ namespace ToastOS
         }
         private void conversion()
         {
-
+            string whichConversion;
+            Console.WriteLine("Enter what you would like to convert > ");
+            whichConversion = Console.ReadLine();
+            switch (whichConversion)
+            {
+                case "degreesToRadians":
+                    //Skip to function.
+                    break;
+                case "radiansToDegrees":
+                    //Skip to function.
+                    break;
+                case "cmToInch":
+                    //Skip to function
+                    break;
+                case "inchToCm":
+                    //Skip to function.
+                    break;
+            }
         }
     }
 }
