@@ -102,9 +102,9 @@ namespace ToastOS
             {
                 //Login
                 Console.WriteLine();
-                Console.WriteLine("username: ");
+                Console.Write("username: ");
                 string user = Console.ReadLine();
-                Console.WriteLine("password: ");
+                Console.Write("password: ");
                 string pass = Console.ReadLine();
                 if (user == "administrator")
                 {
@@ -340,13 +340,16 @@ namespace ToastOS
             string whichConversion;
             Console.WriteLine("Enter what you would like to convert > ");
             whichConversion = Console.ReadLine();
+            Console.WriteLine("What value would you like to convert > ");
+            string strValue = Console.ReadLine();
+            double value = Convert.ToInt32(strValue);
             switch (whichConversion)
             {
                 case "degreesToRadians":
-                    //Skip to function.
+                    degreesToRadians(value);
                     break;
                 case "radiansToDegrees":
-                    //Skip to function.
+                    radiansToDegrees(value);
                     break;
                 case "cmToInch":
                     //Skip to function
@@ -355,6 +358,16 @@ namespace ToastOS
                     //Skip to function.
                     break;
             }
+        }
+        private void degreesToRadians(double input)
+        {
+            double result = (Math.PI / 180) * input;
+            Console.WriteLine(result);
+        }
+        private void radiansToDegrees(double input)
+        {
+            double result = (180/Math.PI) * input;
+            Console.WriteLine(result);
         }
     }
 }
