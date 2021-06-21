@@ -13,7 +13,15 @@ ToastOS Source Code
 Made by Callum Bennett (callumbennett-dev on GitHub)
 Made using COSMOS user kit C#
 Ongoing Project from March 2021
-Will become a release when is finished. (May be a while away)
+*/
+
+/*
+To do
+read txt file
+read .toast file
+Edit txt file
+Edit .toast file
+Custom boot logos (CallumBennett-dev and ToastOS)
 */
 
 using System;
@@ -46,6 +54,8 @@ namespace ToastOS
  \____/\__,_|_|_|\__,_|_| |_| |_\____/ \___|_| |_|_| |_|\___|\__|\__|      \__,_|\___| \_/  
                                                                                             
                                                                                             ");
+            wait(5);
+            //TOASTOS BOOT LOGO
             wait(5);
             Console.Clear();
             Console.WriteLine("ToastOS User Console");
@@ -290,7 +300,7 @@ namespace ToastOS
 
         private static void area(int switchValue) //Area calculator for circles, triangles, and rectangles
         {
-            //Circle is switchVale 0
+            //Circle is switchValue 0
             //Rect is switchValue 1
             //Triangle is switchValue 2
             if (switchValue == 0) //Circle Area
