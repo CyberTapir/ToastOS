@@ -6,16 +6,12 @@
 | \__/\ (_| | | | |_| | | | | | | |_/ /  __/ | | | | | |  __/ |_| |_      | (_| |  __/\ V / 
  \____/\__,_|_|_|\__,_|_| |_| |_\____/ \___|_| |_|_| |_|\___|\__|\__|      \__,_|\___| \_/  
                                                                                                                                                                                         
-*/
 
-/*
 ToastOS Source Code
 Made by Callum Bennett (callumbennett-dev on GitHub)
 Made using COSMOS user kit C#
 Ongoing Project from March 2021
-*/
 
-/*
 To do
 read txt file
 read .toast file
@@ -28,13 +24,17 @@ using System;
 using Cosmos.HAL;
 using System.Collections.Generic;
 using System.Text;
+using System.IO;
 using Sys = Cosmos.System;
+using System.Threading.Tasks;
 
 namespace ToastOS
 {
     class Global
     {
         public static int adminState = 0;
+        public string username = "calben3358";
+        public string password = "admin";
     }
     public class Kernel : Sys.Kernel
     {
@@ -44,6 +44,8 @@ namespace ToastOS
 
         protected override void BeforeRun()
         {
+            //read user data
+            string[] userDetails = System.IO.File.ReadAllLines(""/*link to .txt or .toast file*/);
             Console.Clear();
             Console.Write(" 
  _____       _ _                ______                       _   _             _            
@@ -54,9 +56,9 @@ namespace ToastOS
  \____/\__,_|_|_|\__,_|_| |_| |_\____/ \___|_| |_|_| |_|\___|\__|\__|      \__,_|\___| \_/  
                                                                                             
                                                                                             ");
-            wait(5);
-            //TOASTOS BOOT LOGO
-            wait(5);
+            task.Wait(5);
+            Console.WriteLine("Press Enter to Continue boot");
+            Console.ReadLine();
             Console.Clear();
             Console.WriteLine("ToastOS User Console");
             Global.adminState = 0;
@@ -71,6 +73,9 @@ namespace ToastOS
             {
                 case "about":
                     about();
+                    break;
+                case "update username":
+                    updateDetails(0);
                     break;
                 case "admin":
                     adminLogin(0);
@@ -103,13 +108,9 @@ namespace ToastOS
                     conversion();
                     break;
                 default:
-                    oops();
+                    Console.WriteLine("Bad command, try again");
                     break;
             }
-        }
-        private static void oops() //This will trigger when a command not listed is entered
-        {
-            Console.WriteLine("Bad command, try again");
         }
 
         private static void about() //Tells the user about the System
@@ -137,9 +138,9 @@ namespace ToastOS
                 string user = Console.ReadLine();
                 Console.Write("password: ");
                 string pass = Console.ReadLine();
-                if (user == "administrator")
+                if (user == Global.username)
                 {
-                    if (pass == "administrator") //Set as another global variable, maybe add method to change this value later
+                    if (pass == Global.password) //Set as another global variable, maybe add method to change this value later
                     {
                         Global.adminState = 1;
                         Console.WriteLine("Logon Successful");
@@ -399,6 +400,36 @@ namespace ToastOS
         {
             double result = (180/Math.PI) * input;
             Console.WriteLine(result);
+        }
+        private void updateDetails(int switchValue) 
+        {
+            //read details in .txt/.toast file and update if called
+            if (switchValue == 0) //username
+            {
+                Console.Write("Enter your new Username > ");
+                string newUsername = Console.Readline();
+                await file.WriteLineAsync(newUsername);
+            } else if (switchValue == 1)
+            {
+                await file.WriteLineAsync(newPword);
+            }
+        }
+        private void enterPassword() 
+        {
+            ConsoleKeyInfo key;
+            string code = "";
+            do
+            {
+                key = Console.ReadKey(true);
+
+                if (Char.IsNumber(key.KeyChar))
+                {
+                        Console.Write("*");
+                }
+                code += key.KeyChar;
+            } while (key.Key != ConsoleKey.Enter);
+
+            return code;
         }
     }
 }
