@@ -45,9 +45,9 @@ namespace ToastOS
         protected override void BeforeRun()
         {
             //read user data
-            string Username = System.IO.File.ReadAllText(""/*link to .txt or .toast file*/);
-            string Password = System.IO.File.ReadAllText("");
-            string Name = System.IO.File.ReadAllText("");
+            string Username = System.IO.File.ReadAllText("username.toast");
+            string Password = System.IO.File.ReadAllText("password.toast");
+            string Name = System.IO.File.ReadAllText("name.toast");
             Console.Clear();
             Console.Write(" 
  _____       _ _                ______                       _   _             _            
@@ -413,12 +413,20 @@ namespace ToastOS
             {
                 Console.Write("Enter your new Username > ");
                 string newUsername = Console.Readline();
+                using StreamWriter file = new("username.toast", append: true);
                 await file.WriteLineAsync(newUsername);
             } else if (switchValue == 1)//password
             {
                 Console.Write("Enter your new Password");
                 string newPword = Console.Readline();
+                using StreamWriter file = new("password.toast", append: true);
                 await file.WriteLineAsync(newPword);
+            } else if (switchValue == 2)
+            {
+                Console.Write("Enter your new name > ");
+                string newName = Console.ReadLine();
+                using StreamWriter file = new("name.toast", append: true);
+                await file.WriteLineAsync(newName);
             }
         }
         private void enterPassword() 
