@@ -1,4 +1,13 @@
-﻿/*
+﻿using System;
+using Cosmos.HAL;
+using System.Collections.Generic;
+using System.Text;
+using System.IO;
+using Sys = Cosmos.System;
+using System.Threading;
+//using System.Threading.Tasks;
+
+/*
  _____       _ _                ______                       _   _             _            
 /  __ \     | | |               | ___ \                     | | | |           | |           
 | /  \/ __ _| | |_   _ _ __ ___ | |_/ / ___ _ __  _ __   ___| |_| |_ ______ __| | _____   __
@@ -20,21 +29,15 @@ Edit .toast file
 Custom boot logos (CallumBennett-dev and ToastOS)
 */
 
-using System;
-using Cosmos.HAL;
-using System.Collections.Generic;
-using System.Text;
-using System.IO;
-using Sys = Cosmos.System;
-using System.Threading.Tasks;
+
 
 namespace ToastOS
 {
     class Global
     {
         public static int adminState = 0;
-        public string username = "calben3358";
-        public string password = "admin";
+        //public string username = "calben3358";
+        //public string password = "admin";
     }
     public class Kernel : Sys.Kernel
     {
@@ -45,24 +48,24 @@ namespace ToastOS
         protected override void BeforeRun()
         {
             //read user data
+            /*
             string Username = System.IO.File.ReadAllText("username.toast");
             string Password = System.IO.File.ReadAllText("password.toast");
             string Name = System.IO.File.ReadAllText("name.toast");
+            */
             Console.Clear();
-            Console.Write(" 
- _____       _ _                ______                       _   _             _            
-/  __ \     | | |               | ___ \                     | | | |           | |           
-| /  \/ __ _| | |_   _ _ __ ___ | |_/ / ___ _ __  _ __   ___| |_| |_ ______ __| | _____   __
-| |    / _` | | | | | | '_ ` _ \| ___ \/ _ \ '_ \| '_ \ / _ \ __| __|______/ _` |/ _ \ \ / /
-| \__/\ (_| | | | |_| | | | | | | |_/ /  __/ | | | | | |  __/ |_| |_      | (_| |  __/\ V / 
- \____/\__,_|_|_|\__,_|_| |_| |_\____/ \___|_| |_|_| |_|\___|\__|\__|      \__,_|\___| \_/  
-                                                                                            
-                                                                                            ");
-            task.Wait(5);
-            Console.WriteLine("Press Enter to Continue boot");
-            Console.ReadLine();
+            Console.WriteLine("ToastOS\nCallumBennett-Dev\nPress Enter to continue boot");
+            while (Console.ReadKey().Key != ConsoleKey.Enter)
+            {
+                continue;
+            }
             Console.Clear();
             Console.WriteLine("ToastOS User Console");
+            //Thread.Sleep(2000);
+            //Console.WriteLine("Press Enter to Continue boot");
+            //Console.ReadLine();
+            //Console.Clear();
+            //Console.WriteLine("ToastOS User Console");
             Global.adminState = 0;
         }
 
@@ -76,14 +79,17 @@ namespace ToastOS
                 case "about":
                     about();
                     break;
-                case "update username":
+                /*case "update username":
                     updateDetails(0);
                     break;
                 case "update password":
                     updateDetails(1);
-                    break;
+                    break;*/
                 case "admin":
                     adminLogin(0);
+                    break;
+                case "screen":
+                    screenSize();
                     break;
                 case "clear":
                     clear(0);
@@ -143,9 +149,9 @@ namespace ToastOS
                 string user = Console.ReadLine();
                 Console.Write("password: ");
                 string pass = Console.ReadLine();
-                if (user == Global.username)
+                if (user == "calben3358")
                 {
-                    if (pass == Global.password) //Set as another global variable, maybe add method to change this value later
+                    if (pass == "global") //Set as another global variable, maybe add method to change this value later
                     {
                         Global.adminState = 1;
                         Console.WriteLine("Logon Successful");
@@ -406,6 +412,7 @@ namespace ToastOS
             double result = (180/Math.PI) * input;
             Console.WriteLine(result);
         }
+        /*
         private void updateDetails(int switchValue) 
         {
             //read details in .txt/.toast file and update if called
@@ -445,6 +452,12 @@ namespace ToastOS
             } while (key.Key != ConsoleKey.Enter);
 
             return code;
+        }
+        */
+        private void screenSize()
+        {
+            Console.WriteLine("--------------------");
+            Console.WriteLine("20");
         }
     }
 }
