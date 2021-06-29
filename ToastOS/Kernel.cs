@@ -29,11 +29,9 @@ Edit .toast file
 Custom boot logos (CallumBennett-dev and ToastOS)
 */
 
-
-
 namespace ToastOS
 {
-    class Global
+    public class Global
     {
         public static int adminState = 0;
         //public string username = "calben3358";
@@ -53,20 +51,16 @@ namespace ToastOS
             string Password = System.IO.File.ReadAllText("password.toast");
             string Name = System.IO.File.ReadAllText("name.toast");
             */
+            Global.adminState = 0;
             Console.Clear();
-            Console.WriteLine("ToastOS\nCallumBennett-Dev\nPress Enter to continue boot");
+            //80 x 24
+            Console.WriteLine("ToastOS 0.12\nCallumBennettDev\nPress Enter to continue boot");
             while (Console.ReadKey().Key != ConsoleKey.Enter)
             {
                 continue;
             }
             Console.Clear();
             Console.WriteLine("ToastOS User Console");
-            //Thread.Sleep(2000);
-            //Console.WriteLine("Press Enter to Continue boot");
-            //Console.ReadLine();
-            //Console.Clear();
-            //Console.WriteLine("ToastOS User Console");
-            Global.adminState = 0;
         }
 
         protected override void Run()
@@ -87,9 +81,6 @@ namespace ToastOS
                     break;*/
                 case "admin":
                     adminLogin(0);
-                    break;
-                case "screen":
-                    screenSize();
                     break;
                 case "clear":
                     clear(0);
@@ -144,7 +135,6 @@ namespace ToastOS
             if (called == 0)
             {
                 //Login
-                Console.WriteLine();
                 Console.Write("username: ");
                 string user = Console.ReadLine();
                 Console.Write("password: ");
@@ -155,6 +145,9 @@ namespace ToastOS
                     {
                         Global.adminState = 1;
                         Console.WriteLine("Logon Successful");
+                    } else
+                    {
+                        Console.WriteLine("Wrong Password");
                     }
                 } else
                 {
@@ -454,10 +447,5 @@ namespace ToastOS
             return code;
         }
         */
-        private void screenSize()
-        {
-            Console.WriteLine("--------------------");
-            Console.WriteLine("20");
-        }
     }
 }
