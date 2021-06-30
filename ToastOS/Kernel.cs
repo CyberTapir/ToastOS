@@ -54,7 +54,8 @@ namespace ToastOS
             Global.adminState = 0;
             Console.Clear();
             //80 x 24
-            Console.WriteLine("ToastOS 0.12\nCallumBennettDev\nPress Enter to continue boot");
+            //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ToastOS 0.12 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+            Console.WriteLine("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ToastOS 0.12 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CallumBennettDev ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\nPress Enter to continue boot");
             while (Console.ReadKey().Key != ConsoleKey.Enter)
             {
                 continue;
@@ -151,7 +152,7 @@ namespace ToastOS
                     }
                 } else
                 {
-                    Console.WriteLine("login unsuccessful");
+                    Console.WriteLine("logon unsuccessful");
                 }
 
             } else if (called == 1)
