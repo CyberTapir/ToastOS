@@ -26,7 +26,6 @@ read txt file
 read .toast file
 Edit txt file
 Edit .toast file
-Custom boot logos (CallumBennett-dev and ToastOS)
 */
 
 namespace ToastOS
@@ -55,7 +54,7 @@ namespace ToastOS
             Console.Clear();
             //80 x 24
             //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ToastOS 0.12 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-            Console.WriteLine("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ToastOS 0.12 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CallumBennettDev ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\nPress Enter to continue boot");
+            Console.WriteLine("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ToastOS 0.12 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CallumBennett-Dev ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\nPress Enter to continue boot...");
             while (Console.ReadKey().Key != ConsoleKey.Enter)
             {
                 continue;
@@ -118,7 +117,7 @@ namespace ToastOS
 
         private static void about() //Tells the user about the System
         {
-            Console.WriteLine("ToastOS 0.8");
+            Console.WriteLine("ToastOS 0.12");
             Console.WriteLine("Developed by Callum Bennett");
             Console.WriteLine("Software made using COSMOS C# user kit");
         }
