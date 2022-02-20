@@ -1,4 +1,15 @@
-﻿using System;
+﻿/*
+ ________      ___    ___ ________  _______   ________          _________  ________  ________  ___  ________     
+|\   ____\    |\  \  /  /|\   __  \|\  ___ \ |\   __  \        |\___   ___\\   __  \|\   __  \|\  \|\   __  \    
+\ \  \___|    \ \  \/  / | \  \|\ /\ \   __/|\ \  \|\  \       \|___ \  \_\ \  \|\  \ \  \|\  \ \  \ \  \|\  \   
+ \ \  \        \ \    / / \ \   __  \ \  \_|/_\ \   _  _\           \ \  \ \ \   __  \ \   ____\ \  \ \   _  _\  
+  \ \  \____    \/  /  /   \ \  \|\  \ \  \_|\ \ \  \\  \|           \ \  \ \ \  \ \  \ \  \___|\ \  \ \  \\  \| 
+   \ \_______\__/  / /      \ \_______\ \_______\ \__\\ _\            \ \__\ \ \__\ \__\ \__\    \ \__\ \__\\ _\ 
+    \|_______|\___/ /        \|_______|\|_______|\|__|\|__|            \|__|  \|__|\|__|\|__|     \|__|\|__|\|__|
+                                                                                                                                                                                        
+*/
+
+using System;
 using Cosmos.HAL;
 using System.Collections.Generic;
 using System.Text;
@@ -8,18 +19,12 @@ using System.Threading;
 //using System.Threading.Tasks;
 
 /*
- _____       _ _                ______                       _   _             _            
-/  __ \     | | |               | ___ \                     | | | |           | |           
-| /  \/ __ _| | |_   _ _ __ ___ | |_/ / ___ _ __  _ __   ___| |_| |_ ______ __| | _____   __
-| |    / _` | | | | | | '_ ` _ \| ___ \/ _ \ '_ \| '_ \ / _ \ __| __|______/ _` |/ _ \ \ / /
-| \__/\ (_| | | | |_| | | | | | | |_/ /  __/ | | | | | |  __/ |_| |_      | (_| |  __/\ V / 
- \____/\__,_|_|_|\__,_|_| |_| |_\____/ \___|_| |_|_| |_|\___|\__|\__|      \__,_|\___| \_/  
-                                                                                                                                                                                        
-
-ToastOS Source Code
-Made by Callum Bennett (callumbennett-dev on GitHub)
+TapirOS Source Code
+Made by Cyber Tapir (@cybertapir on GitHub)
 Made using COSMOS user kit C#
 Ongoing Project from March 2021
+
+Screen size is 80x24 characters
 
 To do
 read txt file
@@ -30,18 +35,10 @@ Edit .toast file
 
 namespace ToastOS
 {
-    public class Global
-    {
-        public static int adminState = 0;
-        //public string username = "calben3358";
-        //public string password = "admin";
-    }
     public class Kernel : Sys.Kernel
     {
-
         //Variables
-        public int adminState = 0;
-
+        //public int adminState = 0;
         protected override void BeforeRun()
         {
             //read user data
@@ -52,17 +49,14 @@ namespace ToastOS
             */
             Global.adminState = 0;
             Console.Clear();
-            //80 x 24
-            //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ToastOS 0.12 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-            Console.WriteLine("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ToastOS 0.12 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ CallumBennett-Dev ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\nPress Enter to continue boot...");
+            Console.WriteLine("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ TapirOS 0.13 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\nCyberTapir\nPress Enter to continue boot...");
             while (Console.ReadKey().Key != ConsoleKey.Enter)
             {
                 continue;
             }
             Console.Clear();
-            Console.WriteLine("ToastOS User Console");
+            Console.WriteLine("TapirOS User Console");
         }
-
         protected override void Run()
         {
             Console.Write("> ");
@@ -79,10 +73,40 @@ namespace ToastOS
                 case "update password":
                     updateDetails(1);
                     break;*/
+                /*case "createFile":
+                    string path = @"c:\temp\MyTest.txt";
+                    try
+                    {
+                        // Create the file, or overwrite if the file exists.
+                        using (FileStream fs = File.Create(path))
+                        {
+                            byte[] info = new UTF8Encoding(true).GetBytes("This is some text in the file.");
+                            // Add some information to the file.
+                            fs.Write(info, 0, info.Length);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.ToString());
+                    }
+                    break;*/
                 case "admin":
                     adminLogin(0);
                     break;
                 case "clear":
+                    clear(0);
+                    break;
+                case "TapirText":
+                    Console.Clear();
+                    Console.WriteLine("TapirText Word Processor. To exit, press F10. \n! Your data will NOT be saved !");
+                    if (Console.ReadKey().Key == ConsoleKey.Enter)
+                    {
+                        Console.WriteLine("");
+                    }
+                    while (Console.ReadKey().Key != ConsoleKey.F10)
+                    {
+                        continue;
+                    }
                     clear(0);
                     break;
                 case "calculator":
@@ -114,14 +138,12 @@ namespace ToastOS
                     break;
             }
         }
-
         private static void about() //Tells the user about the System
         {
-            Console.WriteLine("ToastOS 0.12");
-            Console.WriteLine("Developed by Callum Bennett");
+            Console.WriteLine("TapirOS 0.13");
+            Console.WriteLine("Developed by CyberTapir");
             Console.WriteLine("Software made using COSMOS C# user kit");
         }
-
         public static void adminLogin(int called) //This will tell if the user is logged in as an admin or not
         {
             //Adminstate
@@ -153,18 +175,17 @@ namespace ToastOS
                 {
                     Console.WriteLine("logon unsuccessful");
                 }
-
             } else if (called == 1)
             {
                 //Check if the user is admin or not for the Clear Command
                 if (Global.adminState == 0)
                 {
                     //Not signed in 
-                    Console.WriteLine("ToastOS User Console");
+                    Console.WriteLine("TapirOS User Console");
                 } else if (Global.adminState == 1)
                 {
                     //Signed in
-                    Console.WriteLine("ToastOS Administrator Console"); 
+                    Console.WriteLine("TapirOS Administrator Console"); 
                 }
             } else if (called == 2)
             {
@@ -172,7 +193,6 @@ namespace ToastOS
                 clear(0);
             }
         }
-
         private static void clear(int value) //Clears the Console and calls adminLogin with an input value of 1
         {
             if (value == 0)
@@ -186,10 +206,9 @@ namespace ToastOS
             }
 
         }
-
         private static void calculator(int input)
         {
-            if (input == 0) //For two numbers with +, -, * and /
+            if (input == 0) //For two numbers with +, -, * & /
             {
                 int result = 0;
                 Console.WriteLine();
@@ -216,7 +235,7 @@ namespace ToastOS
                     Console.WriteLine("5 + 4");
                 }
                 Console.WriteLine(result);
-            } else if (input == 1)//This will be for 3 numbers, with order of operations
+            } else if (input == 1)//This will be for 3 numbers, with order of operations covering +, -, * & /
             {
                 int result1 = 0;
                 int result2 = 0;
@@ -247,7 +266,7 @@ namespace ToastOS
                         result1 = x0 + x1;
                         result2 = result1 - x2;
                     }
-                } else if (a[1].Contains("-"))
+                } else if (a[1].Contains("-")) 
                 {
                     if (a[3].Contains("*"))
                     {
@@ -302,7 +321,6 @@ namespace ToastOS
                 Console.WriteLine(result2);
             }
         }
-
         private static void area(int switchValue) //Area calculator for circles, triangles, and rectangles
         {
             //Circle is switchValue 0
@@ -338,7 +356,6 @@ namespace ToastOS
                 Console.WriteLine(area / 2);
             }
         }
-
         private static void hangman()
         {
             /*
@@ -405,6 +422,16 @@ namespace ToastOS
             double result = (180/Math.PI) * input;
             Console.WriteLine(result);
         }
+        private void tapirText()
+        {
+            Console.Clear();
+            Console.WriteLine("Press F10 to exit TapirText");
+            while (Console.ReadKey().Key != ConsoleKey.F10)
+            {
+                // Wait until key pressed is F10
+                continue;
+            }
+        }
         /*
         private void updateDetails(int switchValue) 
         {
@@ -447,5 +474,11 @@ namespace ToastOS
             return code;
         }
         */
+    }
+    public class Global
+    {
+        public static int adminState = 0;
+        //public string username = "calben3358";
+        //public string password = "admin";
     }
 }
