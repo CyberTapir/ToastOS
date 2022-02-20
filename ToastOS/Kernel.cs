@@ -103,6 +103,7 @@ namespace ToastOS
                     {
                         Console.WriteLine("");
                     }
+
                     while (Console.ReadKey().Key != ConsoleKey.F10)
                     {
                         continue;
@@ -159,21 +160,22 @@ namespace ToastOS
                 //Login
                 Console.Write("username: ");
                 string user = Console.ReadLine();
-                Console.Write("password: ");
-                string pass = Console.ReadLine();
                 if (user == "calben3358")
                 {
+                    Console.Write("password: ");
+                    string pass = Console.ReadLine();
                     if (pass == "global") //Set as another global variable, maybe add method to change this value later
                     {
                         Global.adminState = 1;
                         Console.WriteLine("Logon Successful");
+                        //clear(0);
                     } else
                     {
-                        Console.WriteLine("Wrong Password");
+                        Console.WriteLine("logon unsuccessful CODE!2");
                     }
                 } else
                 {
-                    Console.WriteLine("logon unsuccessful");
+                    Console.WriteLine("logon unsuccessful CODE!1");
                 }
             } else if (called == 1)
             {
