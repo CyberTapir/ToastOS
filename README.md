@@ -1,5 +1,5 @@
 # ToastOS
 
-An OS with all the C# stuff I have made, or am making.
+An example of an Operating system written in C#
 \n
-This is made possible by the COSMOS User Kit
+This is made possible by the COSMOS User Kit.
